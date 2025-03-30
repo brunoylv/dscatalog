@@ -1,6 +1,6 @@
 package com.devsuperior.dscatalog.tests;
 
-import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.dto.User;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
 
@@ -15,9 +15,9 @@ public class Factory {
         return product;
     }
 
-    public static ProductDTO createProductDTO() {
+    public static User createProductDTO() {
         Product product = createProduct();
-        return new ProductDTO(product, product.getCategories());
+        return new User(product, product.getCategories());
     }
 
     public static Category createCategory(){

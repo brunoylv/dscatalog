@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dscatalog.dto.CategoryDTO;
-import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.dto.User;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
@@ -31,33 +31,33 @@ public class ProductService {
 	private CategoryRepository categoryRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAllPaged(Pageable pageable) {
+	public Page<User> findAllPaged(Pageable pageable) {
 		Page<Product> list = repository.findAll(pageable);
-		return list.map(x -> new ProductDTO(x));
+		return list.map(x -> new User(x));
 	}
 
 	@Transactional(readOnly = true)
-	public ProductDTO findById(Long id) {
+	public User findById(Long id) {
 		Optional<Product> obj = repository.findById(id);
 		Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new ProductDTO(entity, entity.getCategories());
+		return new User(entity, entity.getCategories());
 	}
 
 	@Transactional
-	public ProductDTO insert(ProductDTO dto) {
+	public User insert(User dto) {
 		Product entity = new Product();
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
-		return new ProductDTO(entity);
+		return new User(entity);
 	}
 
 	@Transactional
-	public ProductDTO update(Long id, ProductDTO dto) {
+	public User update(Long id, User dto) {
 		try {
 			Product entity = repository.getReferenceById(id);
 			copyDtoToEntity(dto, entity);
 			entity = repository.save(entity);
-			return new ProductDTO(entity);
+			return new User(entity);
 		}
 		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
@@ -77,7 +77,7 @@ public class ProductService {
 		}
 	}
 	
-	private void copyDtoToEntity(ProductDTO dto, Product entity) {
+	private void copyDtoToEntity(User dto, Product entity) {
 
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());

@@ -1,6 +1,6 @@
 package com.devsuperior.dscatalog.services;
 
-import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.dto.User;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
@@ -85,9 +85,9 @@ public class ProductServiceTests {
     @Test
     public void updateShouldReturnProductDTOWhenIdExists(){
 
-        ProductDTO productDTO = Factory.createProductDTO();
+        User productDTO = Factory.createProductDTO();
 
-        ProductDTO result = service.update(existingId, productDTO);
+        User result = service.update(existingId, productDTO);
 
         Assertions.assertNotNull(result);
     }
@@ -95,7 +95,7 @@ public class ProductServiceTests {
     @Test
     public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists(){
 
-        ProductDTO productDTO = Factory.createProductDTO();
+        User productDTO = Factory.createProductDTO();
 
         Assertions.assertThrows(ResourceNotFoundException.class, () ->{
             service.update(nonExistingId, productDTO);
@@ -105,7 +105,7 @@ public class ProductServiceTests {
     @Test
     public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExists(){
 
-        ProductDTO result = service.findById(nonExistingId);
+        User result = service.findById(nonExistingId);
 
         Assertions.assertThrows(ResourceNotFoundException.class, () ->{
             service.findById(nonExistingId);
@@ -117,7 +117,7 @@ public class ProductServiceTests {
     @Test
     public void findByIdShouldReturnProductDTOWhenIdExists(){
 
-        ProductDTO result = service.findById(existingId);
+        User result = service.findById(existingId);
 
         Assertions.assertNotNull(result);
     }
@@ -126,7 +126,7 @@ public class ProductServiceTests {
     public void findAllPagedShouldReturnPage(){
        Pageable pageable = PageRequest.of(0, 10);
 
-       Page<ProductDTO> result = service.findAllPaged(pageable);
+       Page<User> result = service.findAllPaged(pageable);
 
        Assertions.assertNotNull(result);
        Mockito.verify(repository, Mockito.times(1)).findAll(pageable);

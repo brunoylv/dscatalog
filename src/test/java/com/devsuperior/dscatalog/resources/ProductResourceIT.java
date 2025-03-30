@@ -1,6 +1,6 @@
 package com.devsuperior.dscatalog.resources;
 
-import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.dto.User;
 import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.ProductService;
 import com.devsuperior.dscatalog.tests.Factory;
@@ -67,7 +67,7 @@ public class ProductResourceIT {
     @Test
     public void updateShouldReturnProductDTOWhenIdExist() throws Exception{
 
-        ProductDTO productDTO = Factory.createProductDTO();
+        User productDTO = Factory.createProductDTO();
         String jsonBody = objectMapper.writeValueAsString(productDTO);
 
         String expectedName = productDTO.getName();
@@ -88,7 +88,7 @@ public class ProductResourceIT {
     @Test
     public void updateShouldReturnNotFoundWhenIdDoesNotExist() throws Exception {
 
-        ProductDTO productDTO = Factory.createProductDTO();
+        User productDTO = Factory.createProductDTO();
         String jsonBody = objectMapper.writeValueAsString(productDTO);
 
         String expectedName = productDTO.getName();

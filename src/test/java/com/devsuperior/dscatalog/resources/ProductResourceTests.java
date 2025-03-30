@@ -1,7 +1,6 @@
 package com.devsuperior.dscatalog.resources;
 
-import com.devsuperior.dscatalog.dto.ProductDTO;
-import com.devsuperior.dscatalog.repositories.ProductRepository;
+import com.devsuperior.dscatalog.dto.User;
 import com.devsuperior.dscatalog.services.ProductService;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -44,8 +43,8 @@ public class ProductResourceTests {
     private Long existingId;
     private Long nonExistingId;
     private Long dependentId;
-    private Page<ProductDTO> page;
-    private ProductDTO productDTO;
+    private Page<User> page;
+    private User productDTO;
 
     @BeforeEach
     void setUp() throws Exception{
